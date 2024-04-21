@@ -16,41 +16,41 @@ import { get } from 'http';
 
 @Controller('/postagens')
 export class PostagemController {
-  constructor(private readonly PostagemService: PostagemService) {}
+  constructor(private readonly postagemService: PostagemService) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)
   findAll(): Promise<Postagem[]> {
-    return this.PostagemService.findAll();
+    return this.postagemService.findAll();
   }
 
   @Get('/:id')
   @HttpCode(HttpStatus.OK)
   findById(@Param('id', ParseIntPipe) id: number): Promise<Postagem> {
-    return this.PostagemService.findById(id);
+    return this.postagemService.findById(id);
   }
 
   @Get('/titulo/:titulo')
   @HttpCode(HttpStatus.OK)
   findByTitulo(@Param('titulo') titulo: string): Promise<Postagem[]> {
-    return this.PostagemService.findByTitulo(titulo);
+    return this.postagemService.findByTitulo(titulo);
   }
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
   create(@Body() postagem: Postagem): Promise<Postagem> {
-    return this.PostagemService.create(postagem);
+    return this.postagemService.create(postagem);
   }
 
   @Put()
   @HttpCode(HttpStatus.OK)
   update(@Body() postagem: Postagem): Promise<Postagem> {
-    return this.PostagemService.update(postagem);
+    return this.postagemService.update(postagem);
   }
 
   @Delete('/:id')
   @HttpCode(HttpStatus.NO_CONTENT)
   delete(@Param('id', ParseIntPipe) id: number) {
-    return this.PostagemService.delete(id);
+    return this.postagemService.delete(id);
   }
 }
