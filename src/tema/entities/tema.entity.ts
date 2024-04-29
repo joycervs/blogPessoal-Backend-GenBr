@@ -1,11 +1,12 @@
 import { IsNotEmpty } from 'class-validator';
-import { Postagem } from 'src/postagem/entities/postagem.entity';
 import {
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Postagem } from '../../postagem/entities/postagem.entity';
 
 @Entity({ name: 'tb_temas' })
 export class Tema {
@@ -22,5 +23,7 @@ export class Tema {
 
   @UpdateDateColumn()
   data: Date;
-  postagem: any;
+
+  @OneToMany(() => Postagem, (postagem) => postagem.tema)
+  postagem: Postagem[]; // Listar todas as Postagens associadas ao Tema
 }
